@@ -20,6 +20,10 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
+  @include _screenMobile {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 
 .select {
@@ -37,15 +41,23 @@
     padding: 10px;
     @include font(18px, 24px, 400);
     color: $text-mono-dark-second;
-    .select__input {
-      height: 100%;
-      outline: none;
-      border: none;
-      background-color: transparent;
-      &::placeholder {
-        vertical-align: middle;
-        @include font(18px, 24px, 400);
-        color: $text-mono-dark-second !important;
+    @include _screenMobile {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  .select__input {
+    height: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    &::placeholder {
+      vertical-align: middle;
+      @include font(18px, 24px, 400);
+      color: $text-mono-dark-second !important;
+      @include _screenMobile {
+        font-size: 16px;
+        line-height: 22px;
       }
     }
   }
@@ -125,6 +137,9 @@
     vertical-align: middle;
     @include font(18px, 34px, 400);
     cursor: pointer;
+    @include _screenMobile {
+      font-size: 16px;
+    }
     &:hover {
       color: $color-element-medium;
     }
@@ -143,10 +158,18 @@
   @include font(18px, 24px, 400);
   color: $text-mono-dark-second;
   outline: none;
+  @include _screenMobile {
+    font-size: 16px;
+    line-height: 22px;
+  }
   &::placeholder {
     vertical-align: middle;
     @include font(18px, 24px, 400);
     color: $text-mono-dark-second !important;
+    @include _screenMobile {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
 }
 
@@ -167,9 +190,17 @@
   }
   .range__label {
     @include font(18px, 22px, 400);
+    @include _screenMobile {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
   .range__display {
     @include font(18px, 22px, 600);
+    @include _screenMobile {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
   .range__input {
     margin: 15.5px 0;
@@ -179,7 +210,7 @@
     height: 6px;
     background: $background-element-light-70;
     border: 1px solid $color-element-light;
-    border-radius: 1px;
+    border-radius: 3px;
     outline: none;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;

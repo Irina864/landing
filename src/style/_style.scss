@@ -1,22 +1,38 @@
 .landing {
-  min-height: 1850px;
+  min-height: fit-content;
   height: 100vh;
   position: relative;
   margin: 0 auto;
   max-width: 1920px;
   width: 100%;
-  display: grid;
-  grid-template-rows: 850px 1fr 80px;
   background-color: $background-main;
   color: $text-light;
   overflow-x: hidden;
   overflow-y: auto;
+  display: grid;
+  grid-template-rows: 1fr 80px;
   @include _screenLaptop {
-    grid-template-rows: 850px 1fr 100px;
+    grid-template-rows: 1fr 100px;
   }
   @include _screenTablet {
-    min-height: 1920px;
-    grid-template-rows: 650px 1fr 113px;
+    grid-template-rows: 1fr 113px;
+  }
+  @include _screenMobile {
+    grid-template-rows: 1fr 174px;
+  }
+  .main {
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template-rows: 850px 1fr;
+    @include _screenLaptop {
+      grid-template-rows: 850px 1fr;
+    }
+    @include _screenTablet {
+      grid-template-rows: 650px 1fr;
+    }
+    @include _screenMobile {
+      grid-template-rows: 570px 1fr;
+    }
   }
 }
 
@@ -32,6 +48,7 @@
   @include flex(row, center, center);
   background-color: $background-header;
   .content {
+    position: relative;
     max-width: 1210px;
     padding: 0 20px;
     width: 100%;
@@ -51,12 +68,30 @@
   .nav {
     max-width: 435px;
     width: 100%;
+    @include _screenMobile {
+      @include flex(row, flex-end, flex-end);
+    }
     .nav__list {
       width: 100%;
       list-style-type: none;
       padding: 0;
       margin: 0;
       @include flex(row, space-between, center);
+      @include _screenMobile {
+        display: none;
+      }
+    }
+    .nav__list_active {
+      @include _screenMobile {
+        padding: 20px 0;
+        width: 100vw;
+        position: absolute;
+        top: 35px;
+        left: 0;
+        right: 0;
+        background-color: $background-header;
+        @include flex(column, center, center, 15px);
+      }
     }
     .nav__link {
       @include font(13px, 100%, 600);
@@ -72,6 +107,7 @@
   }
   @include _screenTablet {
     min-height: 60px;
+    height: 60px;
     padding-top: 27px;
     padding-bottom: 25px;
     .nav {
@@ -85,7 +121,7 @@
 }
 
 .footer {
-  grid-area: 3/1/4/2;
+  grid-area: 2/1/3/2;
   width: 100%;
   padding: 30px 0;
   @include flex(row, center, center);
@@ -178,11 +214,27 @@
       @include font(11px, 12px, 400, $text-light);
     }
     .contact {
+      max-width: fit-content;
       @include flex(row, center, center, 20px);
-      flex-direction: row;
     }
     .payment {
       @include flex(row, center, center, 20px);
+    }
+  }
+  @include _screenMobile {
+    .contact {
+      @include flex(row, center, center, 20px);
+      flex-direction: row;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $color-element-mono-light-second;
+    }
+    .payment {
+      display: grid;
+      grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+      gap: 10px;
+    }
+    .payment__item:last-child {
+      grid-area: 2/1/3/3;
     }
   }
 }
@@ -232,6 +284,21 @@
       @include font(40px, 120%, 700, $text-medium);
     }
   }
+  @include _screenMobile {
+    .greeting__content {
+      max-width: 85vw;
+      gap: 50px;
+    }
+    .greeting__title {
+      font-size: 22px;
+      line-height: 26px;
+      min-height: fit-content;
+    }
+    .greeting__buttons {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
 }
 
 .advantages {
@@ -247,12 +314,20 @@
     margin: 0;
   }
   .advantages__item {
-    min-height: 24px;
     @include flex(row, center, center, 1px);
-    @include font(20px, 100%, 400, $text-dark);
+    @include font(20px, 24px, 400, $text-dark);
   }
   @include _screenTablet {
     font-size: 20px;
+  }
+  @include _screenMobile {
+    .advantages__note {
+      @include font(14px, 16px, 700, $text-dark);
+    }
+    .advantages__item {
+      @include flex(row, center, center, 1px);
+      @include font(14px, 16px, 400, $text-dark);
+    }
   }
 }
 
@@ -276,6 +351,11 @@
       @include flex(row, space-between, center, 50px);
     }
   }
+  @include _screenMobile {
+    .order__content {
+      @include flex(column, flex-start, center, 50px);
+    }
+  }
 }
 
 .title {
@@ -291,11 +371,21 @@
   .title__subtitle {
     vertical-align: middle;
     text-align: center;
-    @include font(18px, 24px, $text-mono-light);
+    @include font(16px, 20px, $text-mono-light);
   }
   @include _screenTablet {
     .title__subtitle {
       max-width: 460px;
+    }
+  }
+  @include _screenMobile {
+    .title__text {
+      @include font(18px, 22px, 800);
+    }
+    .title__subtitle {
+      max-width: 280px;
+      width: 100%;
+      @include font(15px, 18px, $text-mono-light);
     }
   }
 }
@@ -323,4 +413,27 @@
 .button_file {
   border: 2px solid $color-element-medium;
   border-radius: 3px;
+}
+
+.burger {
+  display: none;
+  @include _screenMobile {
+    @include flex(column, center, center, 2px);
+  }
+  .burger__line {
+    width: 18px;
+    height: 3px;
+    background-color: $color-element-light;
+  }
+  .burger__line_active {
+    &:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 2.4px);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -2.4px);
+    }
+  }
 }
