@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -39,7 +42,37 @@ module.exports = {
     /warning from compiler/,
     (warning) => true,
   ],
+  optimization: {
+    minimize: !devMode,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: !devMode,
+            drop_debugger: !devMode,
+          },
+        },
+      }),
+      new CssMinimizerPlugin(),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   plugins: [
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
@@ -109,10 +142,39 @@ module.exports = {
                   webp: {
                     quality: 75,
                   },
+                  svgo: {
+                    plugins: [
+                      { name: 'removeViewBox', active: false },
+                      { name: 'removeEmptyAttrs', active: false },
+                    ],
+                  },
                 },
               },
             ],
         type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/i,
+        oneOf: [
+          {
+            resourceQuery: /inline/,
+            use: 'svg-inline-loader',
+          },
+          {
+            type: 'asset/resource',
+            use: [
+              {
+                loader: 'svgo-loader',
+                options: {
+                  plugins: [
+                    { name: 'removeViewBox', active: false },
+                    { name: 'removeEmptyAttrs', active: false },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         test: /\.json$/,
