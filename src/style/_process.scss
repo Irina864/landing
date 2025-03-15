@@ -1,0 +1,77 @@
+.process {
+  margin-bottom: 7px;
+  @include flex(row, center, flex-start, 30px);
+  .process__item {
+    position: relative;
+  }
+  @include _screenLaptop {
+    gap: 10px;
+  }
+  @include _screenTablet {
+    @include flex(column, center, flex-start, 30px);
+  }
+}
+
+.step {
+  position: relative;
+  width: 209px;
+  padding: 0 10px;
+  @include flex(column, center, center, 20px);
+  z-index: 3;
+  .step__circle {
+    width: 100px;
+    height: 100px;
+    @include flex(column, center, center);
+    border-radius: 50%;
+    background: $color-circle-step;
+    border: 5px solid $color-border-circle-step;
+  }
+  .step__text {
+    padding: 0 2.5px;
+    text-align: center;
+    @include font(16px, 120%);
+  }
+  @include _screenLaptop {
+    max-width: 165px;
+    width: 100%;
+  }
+  @include _screenTablet {
+    @include flex(column, flex-start, center, 20px);
+    min-height: 150px;
+    width: 209px;
+    .step__circle {
+      width: 80px;
+      height: 80px;
+      @include flex(column, center, center);
+      border-radius: 50%;
+      background: $color-circle-step;
+      border: 5px solid $color-border-circle-step;
+    }
+    .step__text {
+      @include font(13px, 120%);
+    }
+  }
+}
+
+.circlebox {
+  position: absolute;
+  top: 47px;
+  right: -75px;
+  @include flex(row, center, center, 21px);
+  .circlebox__item {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $color-element-mono-light-third;
+  }
+  @include _screenLaptop {
+    gap: 12px;
+    right: -52px;
+  }
+  @include _screenTablet {
+    gap: 6px;
+    transform: rotate(90deg);
+    top: 158px;
+    right: 32.5%;
+  }
+}

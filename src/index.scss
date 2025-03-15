@@ -1,0 +1,18 @@
+@import '~normalize.css';
+@import 'style/fonts';
+@import 'style/var';
+@import 'style/mixins';
+@import 'style/process';
+@import 'style/style';
+@import 'style/form';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: $font;
+}
+
+.none {
+  display: none !important;
+}

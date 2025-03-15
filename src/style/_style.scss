@@ -1,0 +1,326 @@
+.landing {
+  min-height: 1850px;
+  height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1920px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 850px 1fr 80px;
+  background-color: $background-main;
+  color: $text-light;
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include _screenLaptop {
+    grid-template-rows: 850px 1fr 100px;
+  }
+  @include _screenTablet {
+    min-height: 1920px;
+    grid-template-rows: 650px 1fr 113px;
+  }
+}
+
+.header {
+  z-index: 5;
+  min-height: 100px;
+  max-width: 1920px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  padding-top: 33.5px;
+  padding-bottom: 31.5px;
+  @include flex(row, center, center);
+  background-color: $background-header;
+  .content {
+    max-width: 1210px;
+    padding: 0 20px;
+    width: 100%;
+    @include flex(row, space-between, center);
+  }
+  .logo {
+    @include flex(row, center, center);
+    overflow: hidden;
+    max-width: 100%;
+    .logo__img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .nav {
+    max-width: 435px;
+    width: 100%;
+    .nav__list {
+      width: 100%;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      @include flex(row, space-between, center);
+    }
+    .nav__link {
+      @include font(13px, 100%, 600);
+      text-align: right;
+      vertical-align: middle;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav__link_active {
+      color: $text-medium;
+    }
+  }
+  @include _screenTablet {
+    min-height: 60px;
+    padding-top: 27px;
+    padding-bottom: 25px;
+    .nav {
+      max-width: 330px;
+    }
+    .logo {
+      max-width: 180px;
+      width: 100%;
+    }
+  }
+}
+
+.footer {
+  grid-area: 3/1/4/2;
+  width: 100%;
+  padding: 30px 0;
+  @include flex(row, center, center);
+  background-color: $background-footer;
+  .footer__content {
+    max-width: 1210px;
+    padding: 0 20px;
+    width: 100%;
+    @include flex(row, flex-start, center, 35.32px);
+  }
+  .footer__line {
+    width: 1px;
+    height: 18px;
+    background-color: $color-element-mono-light-second;
+  }
+  .copyright {
+    margin-right: 5.01px;
+    vertical-align: middle;
+    @include font(13px, 20px, 400, $text-light);
+    white-space: nowrap;
+  }
+  .payment {
+    @include flex(row, center, center, 38px);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    .payment__item {
+      @include flex(row, center, center, 10px);
+    }
+    .payment__text {
+      vertical-align: middle;
+      @include font(13px, 20px, 400, $text-mono-light-second);
+      white-space: nowrap;
+    }
+  }
+  .contact {
+    padding: 0;
+    margin: 0;
+    max-width: 309px;
+    width: 100%;
+    @include flex(row, space-between, center, 38px);
+    list-style-type: none;
+    .contact__link {
+      text-decoration: none;
+      @include flex(row, center, center, 10px);
+    }
+    .contact__text {
+      vertical-align: middle;
+      white-space: nowrap;
+      @include font(13px, 20px, 400, $text-mono-light-second);
+      text-decoration: none;
+    }
+  }
+  @include _screenLaptop {
+    padding: 20px 0;
+    .footer__content {
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .contact {
+      max-width: 150px;
+      @include flex(column, flex-start, flex-start, 8px);
+      .contact__link {
+        gap: 4px;
+      }
+    }
+    .payment {
+      gap: 8px;
+      .payment__item {
+        gap: 4px;
+      }
+    }
+  }
+  @include _screenTablet {
+    padding: 15px 0;
+    @include flex(row, center, center);
+    .footer__line {
+      display: none;
+    }
+    .footer__content {
+      width: fit-content;
+      @include flex(column-reverse, center, center, 10px);
+    }
+    .copyright {
+      padding-top: 10px;
+      text-align: center;
+      border-top: 1px solid $color-element-mono-light-second;
+      @include font(11px, 12px, 400, $text-light);
+    }
+    .contact {
+      @include flex(row, center, center, 20px);
+      flex-direction: row;
+    }
+    .payment {
+      @include flex(row, center, center, 20px);
+    }
+  }
+}
+
+.greeting {
+  grid-area: 1/1/2/2;
+  height: 100%;
+  max-width: 100%;
+  padding-top: 203px;
+  @include flex(row, center, flex-start);
+  background-image: url('../img/bg.webp');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .greeting__content {
+    max-width: 1170px;
+    margin: 0 20px;
+    width: 100%;
+    @include flex(column, flex-start, flex-start, 80px);
+  }
+  .greeting__title {
+    margin: 0;
+    padding: 0;
+    min-height: 125px;
+    text-transform: uppercase;
+    @include font(48px, 120%, 700, $text-medium);
+    .greeting__dark {
+      color: $text-dark;
+    }
+  }
+  .greeting__buttons {
+    width: 100%;
+    @include flex(row, flex-start, flex-start, 30px);
+    > a {
+      width: 183px;
+      height: 43px;
+      @include font(13px, 100%, 400, $text-mono-dark);
+    }
+    > a:first-child {
+      color: $text-light;
+    }
+  }
+  @include _screenTablet {
+    padding-top: 100px;
+    .greeting__title {
+      max-width: 560px;
+      @include font(40px, 120%, 700, $text-medium);
+    }
+  }
+}
+
+.advantages {
+  @include flex(column, flex-start, flex-start, 10px);
+  .advantages__note {
+    vertical-align: middle;
+    @include font(20px, 24px, 700, $text-dark);
+  }
+  .advantages__list {
+    @include flex(column, flex-start, flex-start, 5px);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .advantages__item {
+    min-height: 24px;
+    @include flex(row, center, center, 1px);
+    @include font(20px, 100%, 400, $text-dark);
+  }
+  @include _screenTablet {
+    font-size: 20px;
+  }
+}
+
+.order {
+  grid-area: 2/1/3/2;
+  padding: 120px 0 150px 0;
+  height: fit-content;
+  @include flex(column, flex-start, center, 80px);
+  background-image: url('../img/bg_2.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .order__content {
+    @include flex(column, flex-start, center, 80px);
+  }
+  @include _screenTablet {
+    gap: 50px;
+    padding: 80px 0 100px 0;
+    .order__content {
+      padding: 0 20px;
+      @include flex(row, space-between, center, 50px);
+    }
+  }
+}
+
+.title {
+  @include flex(column, flex-start, center, 30px);
+  .title__text {
+    vertical-align: middle;
+    text-transform: uppercase;
+    @include font(36px, 40px, 800);
+    .title__dark {
+      color: $text-medium;
+    }
+  }
+  .title__subtitle {
+    vertical-align: middle;
+    text-align: center;
+    @include font(18px, 24px, $text-mono-light);
+  }
+  @include _screenTablet {
+    .title__subtitle {
+      max-width: 460px;
+    }
+  }
+}
+
+.button {
+  width: 100%;
+  height: 100%;
+  padding: 15px 10px;
+  @include flex(row, center, center, 10px);
+  background-color: $color-element-light;
+  border: 1px solid $color-element-mono-medium;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.button_dark {
+  background-color: $color-element-medium;
+  border-color: $color-element-light;
+  color: $text-light;
+}
+
+.button_file {
+  border: 2px solid $color-element-medium;
+  border-radius: 3px;
+}
