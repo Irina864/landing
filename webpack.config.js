@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -68,7 +69,8 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin({
-      algorithm: 'gzip',
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,
       minRatio: 0.8,
@@ -85,6 +87,7 @@ module.exports = {
         { from: path.resolve(__dirname, 'src', 'img'), to: 'img/' },
       ],
     }),
+    new JsonMinimizerPlugin(),
   ],
   module: {
     rules: [
@@ -141,6 +144,8 @@ module.exports = {
                   },
                   webp: {
                     quality: 75,
+                    method: 6,
+                    lossless: false,
                   },
                   svgo: {
                     plugins: [
@@ -158,7 +163,18 @@ module.exports = {
         oneOf: [
           {
             resourceQuery: /inline/,
-            use: 'svg-inline-loader',
+            use: [
+              'svg-inline-loader',
+              {
+                loader: 'svgo-loader',
+                options: {
+                  plugins: [
+                    { name: 'removeViewBox', active: false },
+                    { name: 'removeEmptyAttrs', active: false },
+                  ],
+                },
+              },
+            ],
           },
           {
             type: 'asset/resource',
