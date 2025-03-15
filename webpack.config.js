@@ -55,6 +55,7 @@ module.exports = {
         },
       }),
       new CssMinimizerPlugin(),
+      new JsonMinimizerPlugin(),
     ],
     splitChunks: {
       chunks: 'all',
@@ -69,11 +70,21 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin({
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+    new CompressionPlugin({
       filename: '[path][base].br',
       algorithm: 'brotliCompress',
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,
       minRatio: 0.8,
+      compressionOptions: {
+        level: 11,
+      },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
@@ -87,7 +98,6 @@ module.exports = {
         { from: path.resolve(__dirname, 'src', 'img'), to: 'img/' },
       ],
     }),
-    new JsonMinimizerPlugin(),
   ],
   module: {
     rules: [
@@ -100,7 +110,6 @@ module.exports = {
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
