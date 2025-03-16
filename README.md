@@ -6,7 +6,8 @@ type=design&node-id=0-1&mode=design&t=ouEUZU3qDLkkc1Ya-0
 
 ## Landing
 
-Выполнена адаптивная с минимальным разрешением для отображения 320px;.
+Выполнена адаптивная с минимальным разрешением для отображения 320px.
+
 Технологии: HTML5, SCSS, JS, Webpack, BEM.
 
 ## Deploy
