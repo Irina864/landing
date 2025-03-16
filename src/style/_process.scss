@@ -4,6 +4,31 @@
   .process__item {
     position: relative;
   }
+  .process__item:nth-child(1) {
+    .step__circle {
+      animation-delay: 0s;
+    }
+  }
+  .process__item:nth-child(2) {
+    .step__circle {
+      animation-delay: 0.5s;
+    }
+  }
+  .process__item:nth-child(3) {
+    .step__circle {
+      animation-delay: 1s;
+    }
+  }
+  .process__item:nth-child(4) {
+    .step__circle {
+      animation-delay: 1.5s;
+    }
+  }
+  .process__item:nth-child(5) {
+    .step__circle {
+      animation-delay: 2s;
+    }
+  }
   @include _screenLaptop {
     gap: 10px;
   }
@@ -25,7 +50,9 @@
     border-radius: 50%;
     background: $color-circle-step;
     border: 5px solid $color-border-circle-step;
+    animation: flashBackground 3s infinite;
   }
+
   .step__text {
     padding: 0 2.5px;
     text-align: center;
@@ -63,6 +90,22 @@
     height: 6px;
     border-radius: 50%;
     background-color: $color-element-mono-light-third;
+    animation: flash 1.5s infinite;
+  }
+  .circlebox__item:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .circlebox__item:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .circlebox__item:nth-child(3) {
+    animation-delay: 1s;
+  }
+  .circlebox__item:nth-child(4) {
+    animation-delay: 1.5s;
+  }
+  .circlebox__item:nth-child(5) {
+    animation-delay: 2s;
   }
   @include _screenLaptop {
     gap: 12px;

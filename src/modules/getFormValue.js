@@ -12,7 +12,9 @@ const range = {
 };
 
 // toggle menu
-select.label.addEventListener('click', () => {
+select.menu.style.display = 'none';
+select.label.addEventListener('click', (e) => {
+  e.preventDefault();
   if (select.menu.style.display === 'none') {
     select.menu.style.display = 'flex';
     select.label.classList.add('select__label_active');

@@ -2,6 +2,5 @@ import './index.html';
 import './index.scss';
 import './modules/createStepItem';
 import './modules/getSteps';
-import './modules/helpers';
 import './modules/navigation';
 import './modules/getFormValue';
