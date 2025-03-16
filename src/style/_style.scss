@@ -416,7 +416,7 @@
   .title__subtitle {
     vertical-align: middle;
     text-align: center;
-    @include font(16px, 20px, $text-mono-light);
+    @include font(18px, 24px, $text-mono-light);
   }
   @include _screenTablet {
     .title__subtitle {

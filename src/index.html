@@ -97,16 +97,17 @@
           </div>
           <div class="order__content">
             <div class="process" id="process"></div>
-            <form name="orderForm" class="form" id="orderForm">
+            <form name="orderForm" class="form" id="orderForm" novalidate>
               <div class="form__box">
-                <div class="select">
+                <fieldset class="select">
                   <div class="select__label">
                     <input
-                      name="selectedType"
+                      name="system"
                       class="select__input"
                       type="text"
                       readonly
                       placeholder="Выберите тип системы"
+                      required
                     />
                     <div class="select__arrow"></div>
                   </div>
@@ -122,22 +123,28 @@
                       <div class="menu__item">Et harum quidem</div>
                     </div>
                   </div>
-                </div>
-                <input
-                  name="mail"
-                  class="form__input"
-                  type="email"
-                  placeholder="Ваш e-mail"
-                />
-                <input
-                  name="customerName"
-                  class="form__input"
-                  type="text"
-                  placeholder="Ваше имя"
-                />
+                </fieldset>
+                <fieldset class="form__field">
+                  <input
+                    name="mail"
+                    class="form__input"
+                    type="email"
+                    placeholder="Ваш e-mail"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="form__field">
+                  <input
+                    name="customer"
+                    class="form__input"
+                    type="text"
+                    placeholder="Ваше имя"
+                    required
+                  />
+                </fieldset>
                 <fieldset class="range">
                   <div class="range__label-wrap">
-                    <label class="range__label" for="rangeInput">
+                    <label class="range__label" for="percent">
                       Sed ut perspiciatis, unde omnis iste natus
                     </label>
                     <div class="range__display">
@@ -148,10 +155,11 @@
                     name="range"
                     type="range"
                     class="range__input"
-                    id="rangeInput"
+                    id="percent"
                     min="0"
                     max="100"
                     value="75"
+                    required
                   />
                 </fieldset>
                 <fieldset class="file">
@@ -165,8 +173,9 @@
                   <input
                     type="file"
                     id="file"
-                    name="formFile"
+                    name="file"
                     class="file__input"
+                    required
                   />
                 </fieldset>
               </div>
