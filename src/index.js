@@ -3,4 +3,5 @@ import './index.scss';
 import './modules/createStepItem';
 import './modules/getSteps';
 import './modules/navigation';
-import './modules/getFormValue';
+import './modules/setInputValue';
+import './modules/validation';
