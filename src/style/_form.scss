@@ -349,5 +349,8 @@
   z-index: 8;
   @include font(14px, 14px, 400, $color-text-error);
   line-height: 16.8px;
-  // text-transform: lowercase;
+  text-transform: lowercase;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
