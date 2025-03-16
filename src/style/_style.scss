@@ -1,18 +1,18 @@
 .landing {
-  min-height: fit-content;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   position: relative;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
   background-color: $background-main;
   color: $text-light;
   overflow-x: hidden;
-  display: grid;
-  grid-template-rows: 1fr 80px;
   overflow-y: auto;
-
   .main {
-    grid-area: 1/1/2/2;
     display: grid;
     grid-template-rows: 850px 1fr;
     @include _screenLaptop {
@@ -24,18 +24,6 @@
     @include _screenMobile {
       grid-template-rows: 570px 1fr;
     }
-  }
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
-  @include _screenLaptop {
-    grid-template-rows: 1fr 100px;
-  }
-  @include _screenTablet {
-    grid-template-rows: 1fr 113px;
-  }
-  @include _screenMobile {
-    grid-template-rows: 1fr 174px;
   }
 }
 
@@ -60,6 +48,7 @@
     @include flex(row, center, center);
     overflow: hidden;
     max-width: 100%;
+    text-decoration: none;
     .logo__img {
       max-width: 100%;
       height: auto;
@@ -137,7 +126,7 @@
 }
 
 .footer {
-  grid-area: 2/1/3/2;
+  max-height: 80px;
   width: 100%;
   padding: 30px 0;
   @include flex(row, center, center);
@@ -177,6 +166,7 @@
   }
 
   @include _screenLaptop {
+    max-height: 100px;
     padding: 20px 0;
     .footer__content {
       justify-content: space-between;
@@ -197,6 +187,7 @@
     }
   }
   @include _screenTablet {
+    max-height: 113px;
     padding: 15px 0;
     @include flex(row, center, center);
     .footer__line {
@@ -221,6 +212,7 @@
     }
   }
   @include _screenMobile {
+    max-height: 174px;
     .contact {
       @include flex(row, center, center, 20px);
       flex-direction: row;
