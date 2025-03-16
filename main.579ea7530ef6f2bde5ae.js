@@ -562,7 +562,9 @@ function getProcess() {
     console.error(error);
   });
 }
-getProcess();
+document.addEventListener('DOMContentLoaded', () => {
+  getProcess();
+});
 // EXTERNAL MODULE: ./src/modules/navigation.js
 var navigation = __webpack_require__(747);
 // EXTERNAL MODULE: ./src/modules/setInputValue.js
