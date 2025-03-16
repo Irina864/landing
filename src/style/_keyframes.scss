@@ -1,0 +1,41 @@
+@keyframes colorPulseNav {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(0.8);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    background-color: $color-element-mono-light-third;
+  }
+  50% {
+    background-color: $color-element-light-active;
+  }
+}
+
+@keyframes flashBackground {
+  0%,
+  100% {
+    background: $color-circle-step;
+    border-color: $color-border-circle-step;
+  }
+  50% {
+    background: $color-circle-step-flash;
+    border-color: $color-border-circle-step-flash;
+    box-shadow: -1px 1px 15px 0px $color-element-light-active;
+  }
+}

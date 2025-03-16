@@ -65,58 +65,72 @@
       margin: 0 auto;
     }
   }
-  .nav {
-    max-width: 435px;
-    width: 100%;
-    @include _screenMobile {
-      @include flex(row, flex-end, flex-end);
-    }
-    .nav__list {
-      width: 100%;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      @include flex(row, space-between, center);
-      @include _screenMobile {
-        display: none;
-      }
-    }
-    .nav__list_active {
-      @include _screenMobile {
-        padding: 20px 0;
-        width: 100vw;
-        position: absolute;
-        top: 35px;
-        left: 0;
-        right: 0;
-        background-color: $background-header;
-        @include flex(column, center, center, 15px);
-      }
-    }
-    .nav__link {
-      @include font(13px, 100%, 600);
-      text-align: right;
-      vertical-align: middle;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .nav__link_active {
-      color: $text-medium;
-    }
-  }
   @include _screenTablet {
     min-height: 60px;
     height: 60px;
     padding-top: 27px;
     padding-bottom: 25px;
-    .nav {
-      max-width: 330px;
-    }
     .logo {
       max-width: 180px;
       width: 100%;
+      z-index: 6;
     }
+    .nav {
+      max-width: 330px;
+    }
+  }
+}
+
+.nav {
+  max-width: 435px;
+  width: 100%;
+  @include _screenMobile {
+    @include flex(row, flex-end, flex-end);
+  }
+  .nav__list {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    @include flex(row, space-between, center);
+    @include _screenMobile {
+      display: none;
+    }
+  }
+  .nav__list_active {
+    @include _screenMobile {
+      z-index: 1;
+      padding: 95px 0 20px 0;
+      width: 100vw;
+      position: absolute;
+      top: -30px;
+      left: 0;
+      right: 0;
+      background-color: $background-header;
+      @include flex(column, center, center, 15px);
+    }
+  }
+  .nav__link {
+    @include font(13px, 100%, 600);
+    text-align: right;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $text-medium-hover;
+      animation: colorPulseNav 1s infinite alternate;
+      @include _screenMobile {
+        color: none;
+        animation: none;
+      }
+    }
+    &:active {
+      color: $text-medium-active;
+    }
+  }
+  .nav__link_active {
+    color: $text-medium;
   }
 }
 
@@ -159,24 +173,7 @@
       white-space: nowrap;
     }
   }
-  .contact {
-    padding: 0;
-    margin: 0;
-    max-width: 309px;
-    width: 100%;
-    @include flex(row, space-between, center, 38px);
-    list-style-type: none;
-    .contact__link {
-      text-decoration: none;
-      @include flex(row, center, center, 10px);
-    }
-    .contact__text {
-      vertical-align: middle;
-      white-space: nowrap;
-      @include font(13px, 20px, 400, $text-mono-light-second);
-      text-decoration: none;
-    }
-  }
+
   @include _screenLaptop {
     padding: 20px 0;
     .footer__content {
@@ -239,12 +236,50 @@
   }
 }
 
+.contact {
+  padding: 0;
+  margin: 0;
+  max-width: 309px;
+  width: 100%;
+  @include flex(row, space-between, center, 38px);
+  list-style-type: none;
+  .contact__link {
+    text-decoration: none;
+    @include flex(row, center, center, 10px);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      color: $text-medium-hover;
+      animation: colorPulseNav 1s infinite alternate;
+      transform: scale(1.02);
+      @include _screenMobile {
+      }
+    }
+    &:active {
+      color: $text-medium-active;
+      transform: scale(0.98);
+    }
+    @include _screenMobile {
+      color: none;
+      animation: none;
+      transform: none;
+    }
+  }
+  .contact__text {
+    vertical-align: middle;
+    white-space: nowrap;
+    @include font(13px, 20px, 400, $text-mono-light-second);
+    text-decoration: none;
+  }
+}
+
 .greeting {
   grid-area: 1/1/2/2;
   height: 100%;
   max-width: 100%;
   padding-top: 203px;
   @include flex(row, center, flex-start);
+  background-color: $background-element-light;
   background-image: url('../img/bg.webp');
   background-position: center center;
   background-repeat: no-repeat;
@@ -260,6 +295,9 @@
     padding: 0;
     min-height: 125px;
     text-transform: uppercase;
+    opacity: 0;
+    transform: translateX(100px);
+    animation: slideIn 3.5s forwards;
     @include font(48px, 120%, 700, $text-medium);
     .greeting__dark {
       color: $text-dark;
@@ -303,6 +341,9 @@
 
 .advantages {
   @include flex(column, flex-start, flex-start, 10px);
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideIn 3.5s forwards;
   .advantages__note {
     vertical-align: middle;
     @include font(20px, 24px, 700, $text-dark);
@@ -402,12 +443,35 @@
   vertical-align: middle;
   text-transform: uppercase;
   text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-element-light-hover;
+    transform: scale(1.025);
+  }
+  &:active {
+    background-color: $color-element-light-active;
+    transform: scale(0.975);
+  }
+  @include _screenMobile {
+    background-color: none;
+    transform: none;
+  }
 }
 
 .button_dark {
   background-color: $color-element-medium;
   border-color: $color-element-light;
   color: $text-light;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover {
+    background-color: $color-element-medium-hover;
+    transform: scale(1.05);
+  }
+  &:active {
+    background-color: $color-element-medium-active;
+    transform: scale(0.95);
+  }
 }
 
 .button_file {
@@ -416,6 +480,7 @@
 }
 
 .burger {
+  z-index: 6;
   display: none;
   @include _screenMobile {
     @include flex(column, center, center, 2px);
