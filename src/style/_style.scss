@@ -11,15 +11,7 @@
   display: grid;
   grid-template-rows: 1fr 80px;
   overflow-y: auto;
-  @include _screenLaptop {
-    grid-template-rows: 1fr 100px;
-  }
-  @include _screenTablet {
-    grid-template-rows: 1fr 113px;
-  }
-  @include _screenMobile {
-    grid-template-rows: 1fr 174px;
-  }
+
   .main {
     grid-area: 1/1/2/2;
     display: grid;
@@ -33,6 +25,35 @@
     @include _screenMobile {
       grid-template-rows: 570px 1fr;
     }
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: $color-element-dark;
+  }
+  &::-webkit-scrollbar-track:hover {
+    background-color: $color-element-dark;
+  }
+  &::-webkit-scrollbar-track:active {
+    background-color: $color-element-dark;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: $color-element-medium;
+  }
+  @include _screenLaptop {
+    grid-template-rows: 1fr 100px;
+  }
+  @include _screenTablet {
+    grid-template-rows: 1fr 113px;
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+  @include _screenMobile {
+    grid-template-rows: 1fr 174px;
   }
 }
 
