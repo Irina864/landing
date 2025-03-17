@@ -7,8 +7,7 @@ const burger = {
 
 // select a navigation item
 navItems.forEach((navElem) => {
-  navElem.addEventListener('click', (event) => {
-    event.preventDefault();
+  navElem.addEventListener('click', () => {
     navItems.forEach((item) => item.classList.remove('nav__link_active'));
     navElem.classList.add('nav__link_active');
     if (burger.lines[0].classList.contains('burger__line_active')) {
