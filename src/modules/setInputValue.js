@@ -35,8 +35,13 @@ select.label.addEventListener('click', (e) => {
 select.selectItems.forEach((selectItem) => {
   selectItem.addEventListener('click', (event) => {
     event.preventDefault();
+    select.selectItems.forEach((item) =>
+      item.classList.remove('menu__item_active')
+    );
     select.input.value = selectItem.textContent;
+    selectItem.classList.add('menu__item_active');
     select.menu.style.display = 'none';
+    select.arrow.classList.remove('select__arrow_active');
     select.label.classList.remove('select__label_active');
   });
 });
