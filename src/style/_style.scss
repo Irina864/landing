@@ -439,17 +439,23 @@
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  &:hover {
-    background-color: $color-element-light-hover;
-    transform: scale(1.025);
+  @media (hover: hover) {
+    &:hover {
+      background-color: $color-element-light-hover;
+      transform: scale(1.025);
+    }
   }
   &:active {
     background-color: $color-element-light-active;
     transform: scale(0.975);
   }
   @include _screenTablet {
-    &:hover {
-      background-color: none;
+    -webkit-tap-highlight-color: transparent;
+    &:active {
+      transition: background-color 0.1s ease, transform 0.1s ease;
+    }
+    &:not(:active) {
+      background-color: $color-element-light;
       transform: none;
     }
   }
@@ -460,13 +466,25 @@
   border-color: $color-element-light;
   color: $text-light;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  &:hover {
-    background-color: $color-element-medium-hover;
-    transform: scale(1.05);
+  @media (hover: hover) {
+    &:hover {
+      background-color: $color-element-medium-hover;
+      transform: scale(1.05);
+    }
   }
   &:active {
     background-color: $color-element-medium-active;
     transform: scale(0.95);
+  }
+  @include _screenTablet {
+    -webkit-tap-highlight-color: transparent;
+    &:active {
+      transition: background-color 0.1s ease, transform 0.1s ease;
+    }
+    &:not(:active) {
+      background-color: $color-element-medium;
+      transform: none;
+    }
   }
 }
 
