@@ -58,6 +58,14 @@ form.form.addEventListener('submit', async (e) => {
           input.value = '';
           if (input.type === 'range') {
             input.value = '75';
+            document.querySelector('#rangeValue').textContent = input.value;
+          }
+          if (input.type === 'file') {
+            document.querySelector('.button_file').innerHTML = `  <img
+            class="button__img"
+            src="./img/doc.svg"
+            alt="file"
+          />ПРИКРЕПИТЬ ФАЙЛ`;
           }
         });
         alert('Данные отправлены на сервер');

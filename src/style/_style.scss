@@ -447,9 +447,11 @@
     background-color: $color-element-light-active;
     transform: scale(0.975);
   }
-  @include _screenMobile {
-    background-color: none;
-    transform: none;
+  @include _screenTablet {
+    &:hover {
+      background-color: none;
+      transform: none;
+    }
   }
 }
 

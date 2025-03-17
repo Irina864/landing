@@ -154,6 +154,7 @@
     }
   }
   .menu__item {
+    width: 100%;
     vertical-align: middle;
     @include font(18px, 34px, 400);
     cursor: pointer;
@@ -167,6 +168,9 @@
     &:active {
       color: $color-element-medium;
     }
+  }
+  .menu__item_active {
+    color: $color-element-medium;
   }
 }
 
@@ -245,6 +249,7 @@
     }
   }
   .range__display {
+    width: 50px;
     @include font(18px, 22px, 600);
     @include _screenMobile {
       font-size: 16px;
